@@ -1,0 +1,172 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #ffffff;
+}
+
+.background {
+    background: #f6f9fc;
+    padding: 50px 0;
+}
+
+.container {
+    max-width: 90%;
+    margin: auto;
+}
+
+.d_flex {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.c_flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.f_flex {
+    display: flex;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+li {
+    list-style: none;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.RText {
+    text-align-last: right;
+}
+
+input,
+button {
+    border: none;
+    outline: none;
+    background-color: none;
+}
+
+.row {
+    width: 50%;
+}
+
+.icon-circle {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    background: #f3f5f9;
+    margin-left: 20px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.boxShadow {
+    box-shadow: rgb(43 52 69 / 10%) 0px 4px 16px;
+}
+
+
+.btn-primary {
+    background: #e94560;
+    padding: 13px 40px;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.top {
+    margin-top: 80px;
+}
+
+.mtop {
+    margin-top: 40px;
+}
+
+.heading i {
+    color: #e94560;
+    margin: 10px;
+}
+
+.discount {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #e94560;
+    padding: 3px 10px;
+    font-size: 12px;
+    border-radius: 50px;
+    color: #fff;
+    margin: 10px;
+}
+
+
+/*----- control btn -------*/
+.control-btn .next,
+.control-btn .prev {
+    position: absolute;
+    top: 40%;
+    width: 50px;
+    height: 50px;
+    line-height: 60px;
+    background: #0f3460;
+    border-radius: 50%;
+    transform: 0.5s;
+    z-index: 5;
+}
+
+.control-btn .prev {
+    left: -20px;
+}
+
+.control-btn .next {
+    right: -20px;
+}
+
+.control-btn .prev i,
+.control-btn .next i {
+    font-size: 20px;
+    transition: 0.5s;
+    color: #fff;
+}
+
+.control-btn .prev:hover,
+.control-btn .next:hover {
+    background: #e94560;
+    color: white;
+    cursor: pointer;
+}
+
+/*----- control btn -------*/
+.grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 30px;
+}
+
+.grid2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+}

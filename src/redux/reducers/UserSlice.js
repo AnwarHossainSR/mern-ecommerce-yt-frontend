@@ -18,7 +18,7 @@ export const userSlice = createSlice({
       state.error = '';
       state.isLoading = false;
       state.user = payload;
-      state.isAuth = false;
+      state.isAuth = true;
     },
     userFailure: (state, { payload }) => {
       state.error = payload;

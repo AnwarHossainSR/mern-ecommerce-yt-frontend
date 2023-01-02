@@ -1,8 +1,12 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
+import { getAuthLogout } from '../../../../redux/actions/UserAction';
 
 const Navbar = () => {
+  const token = localStorage.getItem('token');
   const { pathname } = useLocation();
+  const dispatch = useDispatch();
 
   const [MobileMenu, setMobileMenu] = useState(false);
   return (
@@ -35,11 +39,17 @@ const Navbar = () => {
                 <Link to="/products">Products</Link>
               </li>
               <li>
-                <Link to="/login">Login</Link>
+                {token ? (
+                  <Link to="/dashboard">Dashboard</Link>
+                ) : (
+                  <Link to="/login">Login</Link>
+                )}
               </li>
-              {/* <li>
-                <Link to="/track">Orders</Link>
-              </li> */}
+              {token && (
+                <li onClick={() => dispatch(getAuthLogout())}>
+                  <Link to="/">Logout</Link>
+                </li>
+              )}
             </ul>
 
             <button

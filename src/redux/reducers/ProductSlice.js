@@ -3,9 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isLoading: false,
   error: '',
-  products: [],
+  productsInfo: {},
   product: {},
-  isAuth: false,
 };
 
 export const productSlice = createSlice({
@@ -18,16 +17,16 @@ export const productSlice = createSlice({
     productSuccess: (state, { payload }) => {
       state.error = '';
       state.isLoading = false;
-      state.products = payload;
+      state.productsInfo = payload;
     },
     productFailure: (state, { payload }) => {
       state.error = payload;
       state.isLoading = false;
-      state.products = [];
+      state.productsInfo = [];
     },
     clearProduct: (state) => {
       state.isLoading = false;
-      state.products = [];
+      state.productsInfo = [];
       state.error = '';
     },
   },

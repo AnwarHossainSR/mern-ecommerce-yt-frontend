@@ -1,19 +1,30 @@
-import { Button, Stack, TextField, Typography } from '@mui/material';
-import { useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Alert, Button, Stack, TextField, Typography } from '@mui/material';
+import { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import WHiteSpace from '../../components/App/whitespac/WHiteSpace';
-import { PostRequest } from '../../utils/requests';
+import { getAuthAction } from '../../redux/actions/UserAction';
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { error, isAuth } = useSelector((state) => state.users);
+  const dispatch = useDispatch();
   const emailRef = useRef();
   const passwordRef = useRef();
   const handleSubmit = () => {
-    const response = PostRequest('/login', {
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-    });
-    console.log(response);
+    dispatch(
+      getAuthAction({
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+      })
+    );
   };
+  useEffect(() => {
+    if (isAuth) {
+      navigate('/');
+    }
+  }, [isAuth]);
+
   return (
     <Stack>
       <Stack
@@ -39,6 +50,7 @@ const Login = () => {
           pt={5}
         >
           <h2>Login</h2>
+          {error && <Alert severity="error">{error}</Alert>}
           <TextField
             label="Email"
             type="email"
@@ -51,7 +63,8 @@ const Login = () => {
             variant="outlined"
             inputRef={passwordRef}
           />
-          <WHiteSpace height={20} />
+          <WHiteSpace height={10} />
+
           <Button variant="contained" onClick={handleSubmit}>
             Login
           </Button>

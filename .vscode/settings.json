@@ -5,5 +5,5 @@
   },
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "cSpell.words": ["Anwar", "Hossain"]
+  "cSpell.words": ["Anwar", "Hossain", "whitespac"]
 }

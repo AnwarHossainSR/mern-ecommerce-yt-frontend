@@ -1,4 +1,4 @@
-import { Alert, Button, Stack, TextField, Typography } from '@mui/material';
+import { Alert, Button, CircularProgress, Stack, TextField, Typography } from '@mui/material';
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { getAuthAction } from '../../redux/actions/UserAction';
 
 const Login = () => {
   const navigate = useNavigate();
-  const { error, isAuth } = useSelector((state) => state.users);
+  const { error, isAuth,isLoading } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -23,7 +23,7 @@ const Login = () => {
     if (isAuth) {
       navigate('/');
     }
-  }, [isAuth]);
+  }, []);
 
   return (
     <Stack>
@@ -66,7 +66,7 @@ const Login = () => {
           <WHiteSpace height={10} />
 
           <Button variant="contained" onClick={handleSubmit}>
-            Login
+            {isLoading?<CircularProgress size={15} color="secondary" />:'Login'}
           </Button>
 
           <Typography variant="p">

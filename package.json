@@ -41,5 +41,5 @@
     "prettier": "^2.8.1",
     "vite": "^4.0.1"
   },
-  "proxy": "http://localhost:4000/api/v1"
+  "proxy": "http://localhost:4000"
 }

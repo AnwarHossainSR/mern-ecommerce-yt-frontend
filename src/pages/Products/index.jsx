@@ -1,17 +1,25 @@
+import { CircularProgress, Stack } from '@mui/material';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import FlashCard from '../../components/App/flashDeals/FlashCard';
 import { getAllProducts } from '../../redux/actions/ProductAction';
 
 const Products = () => {
-  const {productsInfo,isLoading} = useSelector((state) => state.products);
+  const { search } = useLocation();
+  const { productsInfo, isLoading } = useSelector((state) => state.products);
   const dispatch = useDispatch();
+  const queryParams = new URLSearchParams(search);
+  const searchParams = queryParams.get('search');
+
+  const getProducts = (query) => {
+    if (query) return dispatch(getAllProducts(query));
+    return dispatch(getAllProducts());
+  };
 
   useEffect(() => {
-    if(productsInfo.length === 0) {
-      dispatch(getAllProducts())
-    }
-  }, [productsInfo])
+    getProducts(searchParams);
+  }, [searchParams]);
 
   return (
     <section className="flash">
@@ -21,14 +29,34 @@ const Products = () => {
           <h1> All Products</h1>
         </div>
         <div className="d_flex">
-        {
-          isLoading && <h1>Loading...</h1>
-        }
-        {
-          productsInfo.length >0 && productsInfo.map(product => (
-            <FlashCard product={product} key={product._id} />
-          ))
-        }
+          {isLoading && (
+            <Stack
+              sx={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <CircularProgress />
+            </Stack>
+          )}
+          {productsInfo.length > 0 &&
+            productsInfo.map((product) => (
+              <FlashCard product={product} key={product._id} />
+            ))}
+          {productsInfo.length === 0 && (
+            <Stack
+              sx={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <h1>No Products Found</h1>
+            </Stack>
+          )}
         </div>
       </div>
     </section>

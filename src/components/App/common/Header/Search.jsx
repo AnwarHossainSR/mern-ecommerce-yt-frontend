@@ -1,11 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import assets from '../../../../assets';
 
 const Search = () => {
+  const navigate = useNavigate();
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
-      console.log('do validate');
-    }
+    if (event.target.value === '') return;
+    if (event.key === 'Enter')
+      navigate(`/products?search=${event.target.value}`);
   };
   // fixed Header
   window.addEventListener('scroll', function () {

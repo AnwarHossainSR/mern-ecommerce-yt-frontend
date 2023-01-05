@@ -1,4 +1,4 @@
-import { getApi, postApi } from '../../API/CallAPI';
+import {getApi, postApi} from '../../API/CallAPI';
 import {
   clearUser,
   userFailure,
@@ -33,8 +33,7 @@ export const getAuthLogout = () => async (dispatch) => {
   }
 };
 
-
-//getAUthenticatedUser
+// getAUthenticatedUser
 export const getAuthUser = () => async (dispatch) => {
   dispatch(userPending());
   try {

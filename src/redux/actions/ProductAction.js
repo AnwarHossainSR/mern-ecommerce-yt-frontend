@@ -1,4 +1,4 @@
-import { getApi } from '../../API/CallAPI';
+import {getApi} from '../../API/CallAPI';
 import {
   productFailure,
   productPending,

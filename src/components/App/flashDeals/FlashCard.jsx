@@ -2,10 +2,10 @@ import Rating from '@mui/material/Rating';
 
 const FlashCard = ({ product, addToCart }) => {
   return (
-    <div className="product_container " >
+    <div className="product_container ">
       <div className="product mtop">
         <div className="img">
-          {product?.discount&&product.discount!==null && (
+          {product?.discount && product.discount !== null && (
             <span className="discount">{product.discount}% Off</span>
           )}
           <img src={product?.images && product?.images[0].url} alt="" />

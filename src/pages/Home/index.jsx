@@ -5,19 +5,19 @@ import Hero from '../../components/App/Hero';
 import { getAllProducts } from '../../redux/actions/ProductAction';
 
 const Home = () => {
-  const {productsInfo} = useSelector((state) => state.products);
+  const { productsInfo } = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if(productsInfo.length === 0) {
-      dispatch(getAllProducts())
+    if (productsInfo.length === 0) {
+      dispatch(getAllProducts());
     }
-  }, [productsInfo])
+  }, [productsInfo]);
 
   return (
     <>
       <Hero />
-      <FlashDeals  />
+      <FlashDeals />
     </>
   );
 };

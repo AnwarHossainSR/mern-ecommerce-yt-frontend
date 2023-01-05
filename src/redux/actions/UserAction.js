@@ -1,4 +1,4 @@
-import {getApi, postApi} from '../../API/CallAPI';
+import { getApi, postApi } from '../../API/CallAPI';
 import {
   clearUser,
   userFailure,
@@ -44,4 +44,4 @@ export const getAuthUser = () => async (dispatch) => {
   } catch (error) {
     dispatch(userFailure(error.response.data.message));
   }
-}
+};

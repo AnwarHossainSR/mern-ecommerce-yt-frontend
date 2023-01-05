@@ -12,7 +12,7 @@ const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (!isAuth && localStorage.getItem('token')) {
-      dispatch(getAuthUser())
+      dispatch(getAuthUser());
     }
   }, [isAuth]);
 

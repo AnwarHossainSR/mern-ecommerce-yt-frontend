@@ -9,17 +9,15 @@ const Products = () => {
   const { search } = useLocation();
   const { productsInfo, isLoading } = useSelector((state) => state.products);
   const dispatch = useDispatch();
-  const queryParams = new URLSearchParams(search);
-  const searchParams = queryParams.get('search');
 
   const getProducts = (query) => {
+    console.log(search);
     if (query) return dispatch(getAllProducts(query));
     return dispatch(getAllProducts());
   };
-
   useEffect(() => {
-    getProducts(searchParams);
-  }, [searchParams]);
+    getProducts(search);
+  }, [search]);
 
   return (
     <section className="flash">

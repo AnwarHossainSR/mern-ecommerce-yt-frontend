@@ -1,12 +1,21 @@
 import { Link, useNavigate } from 'react-router-dom';
 import assets from '../../../../assets';
+import { getQueryUrl, useQuery } from '../../../../utils/helper';
 
 const Search = () => {
+  const query = useQuery();
+  //const search = query.get('search');
+  const category = query.get('category');
   const navigate = useNavigate();
-  const handleKeyDown = (event) => {
+  const handleKeyDown = async (event) => {
     if (event.target.value === '') return;
-    if (event.key === 'Enter')
-      navigate(`/products?search=${event.target.value}`);
+    if (event.key === 'Enter') {
+      const queryUrl = getQueryUrl({
+        keyword: event.target.value,
+        category,
+      });
+      navigate(`/products?${queryUrl}`);
+    }
   };
   // fixed Header
   window.addEventListener('scroll', function () {

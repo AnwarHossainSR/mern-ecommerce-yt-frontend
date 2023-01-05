@@ -9,8 +9,7 @@ export const getAllProducts = (params) => async (dispatch) => {
   dispatch(productPending());
   try {
     if (!params) params = '';
-    const response = await getApi(`/products?keyword=${params}`);
-    console.log(response);
+    const response = await getApi(`/products${params}`);
     if (response.success === true) {
       dispatch(productSuccess(response.products));
     } else {

@@ -24,7 +24,7 @@ export const userSlice = createSlice({
       state.error = payload;
       state.isLoading = false;
       state.user = {};
-      state.isAuth = true;
+      state.isAuth = false;
     },
     clearUser: (state) => {
       state.isLoading = false;

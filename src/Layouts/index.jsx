@@ -19,7 +19,7 @@ const Layout = () => {
         <Route path="/products">
           <Route index element={<Products />} />
         </Route>
-        <Route path="/carts">
+        <Route path="/carts" element={<Protected />}>
           <Route index element={<Cart />} />
         </Route>
         <Route path="/" element={<Protected />}>

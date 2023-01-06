@@ -19,7 +19,7 @@ const FlashCard = ({ product, addToCart }) => {
           />
           <div className="price">
             <h4>${product?.price}.00 </h4>
-            <button onClick={() => addToCart(product?.id)}>
+            <button onClick={() => addToCart(product)}>
               <i className="fa fa-plus" />
             </button>
           </div>

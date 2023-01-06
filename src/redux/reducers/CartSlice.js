@@ -1,30 +1,28 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-  isLoading: false,
-  error: '',
-  cartProducts: [],
-  cartProduct: {},
+  isLoading : false,
+  error : '',
+  cartProducts : [],
+  cartProduct : {},
 };
 
 export const cartSlice = createSlice({
-  name: 'carts',
+  name : 'carts',
   initialState,
-  reducers: {
-    cartPending: (state) => {
-      state.isLoading = true;
-    },
-    cartSuccess: (state, { payload }) => {
+  reducers : {
+    cartPending : (state) => { state.isLoading = true;},
+    cartSuccess : (state, {payload}) => {
       state.error = '';
       state.isLoading = false;
       state.cartProducts = payload;
     },
-    cartFailure: (state, { payload }) => {
+    cartFailure : (state, {payload}) => {
       state.error = payload;
       state.isLoading = false;
       state.cartProducts = [];
     },
-    clearCart: (state) => {
+    clearCart : (state) => {
       state.isLoading = false;
       state.cartProducts = [];
       state.error = '';
@@ -32,7 +30,7 @@ export const cartSlice = createSlice({
   },
 });
 
-const { reducer, actions } = cartSlice;
-export const { cartPending, cartSuccess, cartFailure, clearCart } = actions;
+const {reducer, actions} = cartSlice;
+export const {cartPending, cartSuccess, cartFailure, clearCart} = actions;
 
 export default reducer;

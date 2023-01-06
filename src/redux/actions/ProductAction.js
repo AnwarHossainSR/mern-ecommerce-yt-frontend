@@ -1,4 +1,4 @@
-import {getApi} from '../../API/CallAPI';
+import { getApi } from '../../API/CallAPI';
 import {
   productFailure,
   productPending,
@@ -8,8 +8,7 @@ import {
 export const getAllProducts = (params) => async (dispatch) => {
   dispatch(productPending());
   try {
-    if (!params)
-      params = '';
+    if (!params) params = '';
     const response = await getApi(`/products${params}`);
     if (response.success === true) {
       dispatch(productSuccess(response.products));

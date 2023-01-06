@@ -5,10 +5,11 @@ import {
   productSuccess,
 } from '../reducers/ProductSlice';
 
-export const getAllProducts = () => async (dispatch) => {
+export const getAllProducts = (params) => async (dispatch) => {
   dispatch(productPending());
   try {
-    const response = await getApi('/products');
+    if (!params) params = '';
+    const response = await getApi(`/products${params}`);
     if (response.success === true) {
       dispatch(productSuccess(response.products));
     } else {

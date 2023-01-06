@@ -1,4 +1,6 @@
+import axios from 'axios';
 import { getApi, postApi } from '../../API/CallAPI';
+import { notify } from '../../utils/helper';
 import {
   clearUser,
   userFailure,
@@ -33,7 +35,6 @@ export const getAuthLogout = () => async (dispatch) => {
   }
 };
 
-
 //getAUthenticatedUser
 export const getAuthUser = () => async (dispatch) => {
   dispatch(userPending());
@@ -45,4 +46,24 @@ export const getAuthUser = () => async (dispatch) => {
   } catch (error) {
     dispatch(userFailure(error.response.data.message));
   }
-}
+};
+
+// register
+export const registerUserAction = (credentials) => async (dispatch) => {
+  dispatch(userPending());
+  try {
+    const response = await axios.post('/register', credentials, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    if (response.status === 201) {
+      localStorage.setItem('token', response.token);
+      dispatch(userSuccess(response.user));
+      notify('register success', 'success');
+    }
+  } catch (error) {
+    console.log(error.response.data);
+    dispatch(userFailure(error.response.data.message));
+  }
+};

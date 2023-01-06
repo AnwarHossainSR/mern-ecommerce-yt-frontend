@@ -1,16 +1,32 @@
-import { Button, Stack, TextField } from '@mui/material';
-import { useRef } from 'react';
+import { Alert, Button, CircularProgress, Stack, TextField } from '@mui/material';
+import { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import WHiteSpace from '../../components/App/whitespac/WHiteSpace';
+import { registerUserAction } from '../../redux/actions/UserAction';
 
 const Register = () => {
+  const navigate = useNavigate();
+  const { error, isAuth, isLoading } = useSelector((state) => state.users);
+  const dispatch = useDispatch();
+  const [avatar, setAvatar] = useState(null);
+  const [image, setImage] = useState(null);
   const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const handleSubmit = () => {
-    console.log(nameRef.current.value);
-    console.log(emailRef.current.value);
-    console.log(passwordRef.current.value);
+    const data = {
+      name: nameRef.current.value,
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+      image: avatar,
+    };
+    dispatch(registerUserAction(data));
   };
+
+  useEffect(() => {
+    if (isAuth) navigate('/');
+  }, [isAuth]);
   return (
     <Stack>
       <Stack
@@ -35,7 +51,8 @@ const Register = () => {
           }}
           pt={5}
         >
-          <h2>Login</h2>
+          <h2>Register</h2>
+          {error && <Alert severity="error">{error}</Alert>}
           <TextField
             label="Name"
             type="text"
@@ -56,11 +73,29 @@ const Register = () => {
           />
           <Button variant="contained" component="label" color="warning">
             Upload Avatar
-            <input type="file" hidden />
+            <input
+              type="file"
+              hidden
+              onChange={(e) => {
+                setAvatar(e.target.files[0]);
+                const reader = new FileReader();
+                reader.readAsDataURL(e.target.files[0]);
+                reader.onload = () => {
+                  setImage(reader.result);
+                };
+              }}
+            />
           </Button>
+          {image && (
+            <img src={image} alt="avatar" width="100px" height="100px" />
+          )}
           <WHiteSpace height={20} />
           <Button variant="contained" onClick={handleSubmit}>
-            Sign Up
+            {isLoading ? (
+              <CircularProgress color="warning" size={22} />
+            ) : (
+              'Register'
+            )}
           </Button>
           <WHiteSpace height={50} />
         </Stack>

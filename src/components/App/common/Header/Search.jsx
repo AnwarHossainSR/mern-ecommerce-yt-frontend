@@ -1,10 +1,11 @@
+import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import assets from '../../../../assets';
 import { getQueryUrl, useQuery } from '../../../../utils/helper';
 
 const Search = () => {
   const query = useQuery();
-  //const search = query.get('search');
+  const { cartProducts } = useSelector((state) => state.carts);
   const category = query.get('category');
   const navigate = useNavigate();
   const handleKeyDown = async (event) => {
@@ -45,7 +46,7 @@ const Search = () => {
             <div className="cart">
               <Link to="/carts">
                 <i className="fa fa-shopping-bag icon-circle" />
-                <span>0</span>
+                <span>{cartProducts?.length ?? 0}</span>
               </Link>
             </div>
           </div>

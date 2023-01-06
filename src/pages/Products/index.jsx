@@ -3,15 +3,20 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import FlashCard from '../../components/App/flashDeals/FlashCard';
+import { storeProductInCart } from '../../redux/actions/CartAction';
 import { getAllProducts } from '../../redux/actions/ProductAction';
 
 const Products = () => {
   const { search } = useLocation();
   const { productsInfo, isLoading } = useSelector((state) => state.products);
   const dispatch = useDispatch();
+  const { cartProducts } = useSelector((state) => state.carts);
+
+  const addToCart = (product) => {
+    dispatch(storeProductInCart(cartProducts, product));
+  };
 
   const getProducts = (query) => {
-    console.log(search);
     if (query) return dispatch(getAllProducts(query));
     return dispatch(getAllProducts());
   };
@@ -41,9 +46,13 @@ const Products = () => {
           )}
           {productsInfo.length > 0 &&
             productsInfo.map((product) => (
-              <FlashCard product={product} key={product._id} />
+              <FlashCard
+                product={product}
+                key={product._id}
+                addToCart={addToCart}
+              />
             ))}
-          {productsInfo.length === 0 && (
+          {!isLoading && productsInfo.length === 0 && (
             <Stack
               sx={{
                 width: '100%',

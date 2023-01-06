@@ -71,11 +71,7 @@ const Login = () => {
           <WHiteSpace height={10} />
 
           <Button variant="contained" onClick={handleSubmit}>
-            {isLoading ? (
-              <CircularProgress size={15} color="secondary" />
-            ) : (
-              'Login'
-            )}
+            {isLoading ? <CircularProgress size={25} color="warning" /> : 'Login'}
           </Button>
 
           <Typography variant="p">

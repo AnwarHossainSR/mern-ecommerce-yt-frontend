@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-import {getApi, postApi} from '../../API/CallAPI';
-import {notify} from '../../utils/helper';
+import { getApi, postApi } from '../../API/CallAPI';
+import { notify } from '../../utils/helper';
 import {
   clearUser,
   userFailure,
@@ -54,8 +54,8 @@ export const registerUserAction = (credentials) => async (dispatch) => {
   dispatch(userPending());
   try {
     const response = await axios.post('/register', credentials, {
-      headers : {
-        'Content-Type' : 'multipart/form-data',
+      headers: {
+        'Content-Type': 'multipart/form-data',
       },
     });
     if (response.status === 201) {

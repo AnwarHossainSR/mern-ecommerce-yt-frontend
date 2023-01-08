@@ -1,14 +1,23 @@
 import { Avatar, Button, Card, Stack, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { clearCartsAction } from '../../redux/actions/CartAction';
-import { getCartDetails } from '../../utils/helper';
+import WhiteSpace from '../../components/App/whitespac/WHiteSpace';
+import {
+  clearCartsAction,
+  removeSpecificCartFromCartAction,
+} from '../../redux/actions/CartAction';
+import { getCartDetails, getCartProductPriceInfo } from '../../utils/helper';
 
 const Cart = () => {
   const { cartProducts } = useSelector((state) => state.carts);
   const carts = getCartDetails(cartProducts);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const priceInfo = getCartProductPriceInfo(carts);
+
+  const removeItemFromCart = (cart) => () => {
+    dispatch(removeSpecificCartFromCartAction(cartProducts, cart));
+  };
 
   const clearCarts = () => {
     dispatch(clearCartsAction());
@@ -72,6 +81,7 @@ const Cart = () => {
                 <Typography variant="h6" component="div">
                   Quantity
                 </Typography>
+                <Typography variant="h6">Price</Typography>
                 <Typography variant="h6" component="div">
                   Action
                 </Typography>
@@ -104,7 +114,14 @@ const Cart = () => {
                   <Typography variant="h6" component="div">
                     {cart.quantity}
                   </Typography>
-                  <Button variant="contained" color="error">
+                  <Typography variant="h6">
+                    {(cart?.price * cart?.quantity).toFixed(2)}$
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={() => removeItemFromCart(cart)}
+                  >
                     Remove
                   </Button>
                 </Card>
@@ -116,22 +133,50 @@ const Cart = () => {
                   display: 'flex',
                   justifyContent: 'flex-end',
                   alignItems: 'flex-end',
-                  mt: 5,
                 }}
+                mt={5}
               >
-                <Button
-                  variant="contained"
-                  color="warning"
+                <Stack
                   sx={{
                     width: '20%',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
                   }}
-                  onClick={clearCarts}
                 >
-                  Checkout
-                </Button>
+                  <Stack
+                    sx={{
+                      width: '100%',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <Typography variant="h6">
+                      Total Quantity: {priceInfo?.totalQuantity}
+                    </Typography>
+                    <Typography variant="h6">
+                      Total Price: {priceInfo?.totalPrice.toFixed(2)}$
+                    </Typography>
+                    <Typography variant="h6">
+                      Total Discount: {priceInfo?.totalDiscount.toFixed(2)}$
+                    </Typography>
+                    <Typography variant="h6">
+                      Grand Total: {priceInfo?.grantTotal.toFixed(2)}$
+                    </Typography>
+                    <WhiteSpace height={20} />
+                    <Button
+                      variant="contained"
+                      color="warning"
+                      sx={{
+                        width: '60%',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
+                      onClick={clearCarts}
+                    >
+                      Checkout
+                    </Button>
+                  </Stack>
+                </Stack>
               </Stack>
             </Stack>
           )}

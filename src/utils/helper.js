@@ -47,3 +47,25 @@ export const notify = (message, type) => {
       });
   }
 };
+
+export const getCartProductPriceInfo = (carts) => {
+  const priceInfo = {
+    totalPrice: 0,
+    totalDiscount: 0,
+    grantTotal: 0,
+    totalQuantity: 0,
+  };
+
+  carts.forEach((cart) => {
+    priceInfo.totalPrice += cart.price * cart.quantity;
+    if (cart.discount && cart.discount > 0) {
+      priceInfo.totalDiscount +=
+        (cart.discount / 100) * cart.price * cart.quantity;
+    }
+    priceInfo.totalQuantity += cart.quantity;
+  });
+
+  priceInfo.grantTotal = priceInfo.totalPrice - priceInfo.totalDiscount;
+
+  return priceInfo;
+};

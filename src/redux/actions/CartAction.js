@@ -28,3 +28,17 @@ export const clearCartsAction = () => async (dispatch) => {
     dispatch(cartFailure(error.message));
   }
 };
+
+export const removeSpecificCartFromCartAction =
+  (cartProducts, cart) => async (dispatch) => {
+    try {
+      dispatch(cartPending());
+      const carts = new Array(...cartProducts);
+      const updatedCarts = carts.filter((item) => item._id !== cart._id);
+      dispatch(cartSuccess(updatedCarts));
+      notify('Product removed from cart', 'success');
+    } catch (error) {
+      dispatch(cartFailure(error.message));
+      notify('Something went wrong', 'error');
+    }
+  };

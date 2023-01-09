@@ -1,4 +1,19 @@
+import CategoryIcon from '@mui/icons-material/Category';
+import HomeIcon from '@mui/icons-material/Home';
 import assets from '../assets';
+export const menuItems = [
+  {
+    name: 'Dashboard',
+    icon: HomeIcon,
+    path: '/admin/dashboard',
+  },
+  {
+    name: 'Products',
+    icon: CategoryIcon,
+    path: '/admin/products',
+  },
+];
+
 const Data = {
   productItems: [
     {

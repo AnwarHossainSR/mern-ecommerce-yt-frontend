@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import Footer from '../components/App/common/Footer/Footer';
 import Header from '../components/App/common/Header/Header';
 import NotFound from '../pages/404';
-import Dashboard from '../pages/admin/Dashboard';
+import Dashboard from '../pages/admin/Dashboard/AdminDashboard';
 import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
 import Cart from '../pages/Cart';

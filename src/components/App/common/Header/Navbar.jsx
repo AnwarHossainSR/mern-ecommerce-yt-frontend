@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { getAuthLogout } from '../../../../redux/actions/UserAction';
 
 const Navbar = () => {
-  const token = localStorage.getItem('token');
+  const { isAuth, user } = useSelector((state) => state.users);
   const { pathname } = useLocation();
   const dispatch = useDispatch();
 
@@ -16,7 +16,7 @@ const Navbar = () => {
           <div
             className="catgrories d_flex"
             style={{
-              display: pathname.startsWith('/products') ? 'none' : null,
+              display: pathname !== '/' ? 'none' : null,
             }}
           >
             <span className="fa-solid fa-border-all" />
@@ -39,13 +39,19 @@ const Navbar = () => {
                 <Link to="/products">Products</Link>
               </li>
               <li>
-                {token ? (
-                  <Link to="/dashboard">Dashboard</Link>
+                {isAuth ? (
+                  <>
+                    {user.role === 'admin' ? (
+                      <Link to="/admin/dashboard">Dashboard</Link>
+                    ) : (
+                      <Link to="/dashboard">Dashboard</Link>
+                    )}
+                  </>
                 ) : (
                   <Link to="/login">Login</Link>
                 )}
               </li>
-              {token && (
+              {isAuth && (
                 <li onClick={() => dispatch(getAuthLogout())}>
                   <Link to="/">Logout</Link>
                 </li>

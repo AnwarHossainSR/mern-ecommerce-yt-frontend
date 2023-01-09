@@ -4,7 +4,7 @@ import {
   CircularProgress,
   Stack,
   TextField,
-  Typography,
+  Typography
 } from '@mui/material';
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,7 +14,9 @@ import { getAuthAction } from '../../redux/actions/UserAction';
 
 const Login = () => {
   const navigate = useNavigate();
-  const { error, isAuth, isLoading } = useSelector((state) => state.users);
+  const { error, isAuth, isLoading, user } = useSelector(
+    (state) => state.users
+  );
   const dispatch = useDispatch();
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -27,8 +29,14 @@ const Login = () => {
     );
   };
   useEffect(() => {
-    if (isAuth) navigate('/');
-  }, [isAuth]);
+    if (isAuth) {
+      if (user.role === 'admin') {
+        navigate('/admin/dashboard');
+      } else {
+        navigate('/dashboard');
+      }
+    }
+  }, [isAuth, user]);
 
   return (
     <Stack>

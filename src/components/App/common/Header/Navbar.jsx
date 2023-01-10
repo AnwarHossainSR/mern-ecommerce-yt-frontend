@@ -41,7 +41,7 @@ const Navbar = () => {
               <li>
                 {isAuth ? (
                   <>
-                    {user.role === 'admin' ? (
+                    {user?.role === 'admin' ? (
                       <Link to="/admin/dashboard">Dashboard</Link>
                     ) : (
                       <Link to="/dashboard">Dashboard</Link>

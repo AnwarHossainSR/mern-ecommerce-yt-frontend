@@ -1,8 +1,9 @@
 import axios from 'axios';
-import { getApi, postApi } from '../../API/CallAPI';
+import { getApi, postApi, putApi } from '../../API/CallAPI';
 import { notify } from '../../utils/helper';
 import {
   clearUser,
+  forgotPassword,
   userFailure,
   userPending,
   userSuccess,
@@ -58,12 +59,41 @@ export const registerUserAction = (credentials) => async (dispatch) => {
       },
     });
     if (response.status === 201) {
-      localStorage.setItem('token', response.token);
-      dispatch(userSuccess(response.user));
+      localStorage.setItem('token', response.data.token);
+      dispatch(userSuccess(response.data.user));
       notify('register success', 'success');
     }
   } catch (error) {
     console.log(error.response.data);
+    dispatch(userFailure(error.response.data.message));
+  }
+};
+
+export const getForgotPasswordAction = (email) => async (dispatch) => {
+  dispatch(userPending());
+  try {
+    const response = await axios.post('/password/forgot', email);
+    console.log(response);
+    if (response.data.success === true) {
+      dispatch(forgotPassword(response.data.message));
+      notify(response.data.message, 'success');
+    }
+  } catch (error) {
+    dispatch(userFailure(error.response.data.message));
+  }
+};
+
+export const resetPasswordAction = (credentials, token) => async (dispatch) => {
+  dispatch(userPending());
+  try {
+    const response = await putApi(`/password/reset/${token}`, credentials);
+    if (response.success === true) {
+      localStorage.setItem('token', response.token);
+      dispatch(userSuccess(response.user));
+      notify('password reset!', 'success');
+    }
+  } catch (error) {
+    console.log(error.response);
     dispatch(userFailure(error.response.data.message));
   }
 };

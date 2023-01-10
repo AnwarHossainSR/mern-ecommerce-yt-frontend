@@ -33,10 +33,13 @@ const ResetPassword = () => {
       return notify('Password does not match', 'error');
 
     dispatch(
-      resetPasswordAction({
-        password: newPasswordRef.current.value,
-        confirmPassword: confirmPasswordRef.current.value,
-      },token)
+      resetPasswordAction(
+        {
+          password: newPasswordRef.current.value,
+          confirmPassword: confirmPasswordRef.current.value,
+        },
+        token
+      )
     );
   };
   useEffect(() => {

@@ -1,4 +1,3 @@
-import { CircularProgress, Stack } from '@mui/material';
 import { Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, useLocation } from 'react-router-dom';
@@ -11,28 +10,13 @@ import { getAuthUser } from './redux/actions/UserAction';
 
 const App = () => {
   const { pathname } = useLocation();
-  const { isAuth, isLoading } = useSelector((state) => state.users);
+  const { isAuth } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   useEffect(() => {
     if (!isAuth && localStorage.getItem('token')) {
       dispatch(getAuthUser());
     }
   }, [isAuth]);
-
-  if (isLoading)
-    return (
-      <Stack
-        sx={{
-          width: '100%',
-          height: '100vh',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <CircularProgress />
-      </Stack>
-    );
 
   if (pathname.startsWith('/admin')) return <AdminLayout />;
   return (

@@ -5,6 +5,7 @@ const initialState = {
   error: '',
   user: {},
   isAuth: false,
+  message: '',
 };
 
 export const userSlice = createSlice({
@@ -32,10 +33,21 @@ export const userSlice = createSlice({
       state.error = '';
       state.isAuth = false;
     },
+    forgotPassword: (state, { payload }) => {
+      state.message = payload;
+      state.isLoading = false;
+      state.error = '';
+    },
   },
 });
 
 const { reducer, actions } = userSlice;
-export const { userPending, userSuccess, userFailure, clearUser } = actions;
+export const {
+  userPending,
+  userSuccess,
+  userFailure,
+  clearUser,
+  forgotPassword,
+} = actions;
 
 export default reducer;

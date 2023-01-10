@@ -1,8 +1,18 @@
 import { Stack, Typography } from '@mui/material';
+import axios from 'axios';
+import { useEffect } from 'react';
 import StateCard from '../../../components/Admin/Cards/StateCard';
 import ChartArea from '../../../components/Admin/Charts/ChartArea';
 
 const Dashboard = () => {
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      axios.defaults.headers.common[
+        'Authorization'
+      ] = `Bearer ${localStorage.getItem('token')}`;
+    }
+  }, []);
+
   return (
     <Stack
       sx={{

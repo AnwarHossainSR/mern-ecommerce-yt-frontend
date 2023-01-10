@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { getApi, postApi, putApi } from '../../API/CallAPI';
-import { notify } from '../../utils/helper';
+
+import {getApi, postApi, putApi} from '../../API/CallAPI';
+import {notify} from '../../utils/helper';
 import {
   clearUser,
   forgotPassword,
@@ -36,7 +37,7 @@ export const getAuthLogout = () => async (dispatch) => {
   }
 };
 
-//getAUthenticatedUser
+// getAUthenticatedUser
 export const getAuthUser = () => async (dispatch) => {
   dispatch(userPending());
   try {
@@ -54,8 +55,8 @@ export const registerUserAction = (credentials) => async (dispatch) => {
   dispatch(userPending());
   try {
     const response = await axios.post('/register', credentials, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
+      headers : {
+        'Content-Type' : 'multipart/form-data',
       },
     });
     if (response.status === 201) {

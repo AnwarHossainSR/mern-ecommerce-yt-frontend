@@ -1,16 +1,35 @@
 import CategoryIcon from '@mui/icons-material/Category';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import HomeIcon from '@mui/icons-material/Home';
+import SettingsIcon from '@mui/icons-material/Settings';
+import ViewListIcon from '@mui/icons-material/ViewList';
 import assets from '../assets';
+
 export const menuItems = [
   {
-    name: 'Dashboard',
+    name: 'Home',
     icon: HomeIcon,
+    path: '/',
+  },
+  {
+    name: 'Dashboard',
+    icon: DashboardIcon,
     path: '/admin/dashboard',
   },
   {
     name: 'Products',
     icon: CategoryIcon,
     path: '/admin/products',
+  },
+  {
+    name: 'Orders',
+    icon: ViewListIcon,
+    path: '/admin/orders',
+  },
+  {
+    name: 'Settings',
+    icon: SettingsIcon,
+    path: '/admin/settings',
   },
 ];
 

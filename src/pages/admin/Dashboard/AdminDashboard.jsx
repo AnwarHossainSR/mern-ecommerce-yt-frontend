@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import StateCard from '../../../components/Admin/Cards/StateCard';
 import ChartArea from '../../../components/Admin/Charts/ChartArea';
+import TransactionTable from '../../../components/Admin/Tables/TransactionTable';
 
 const Dashboard = () => {
   useEffect(() => {
@@ -37,8 +38,17 @@ const Dashboard = () => {
         <StateCard />
         <StateCard />
       </Stack>
-      <Stack mt={5}>
+      <Stack
+        mt={5}
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          width: '100%',
+        }}
+      >
         <ChartArea />
+        <TransactionTable />
       </Stack>
     </Stack>
   );

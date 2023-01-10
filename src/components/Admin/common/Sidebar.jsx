@@ -9,13 +9,14 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { menuItems } from '../../../constants/Data';
 import { getAuthLogout } from '../../../redux/actions/UserAction';
 import Item from './ListItem';
 
 const Sidebar = () => {
+  const { user } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleNavigate = (path) => {
@@ -24,7 +25,6 @@ const Sidebar = () => {
 
   const handleLogout = () => {
     dispatch(getAuthLogout());
-    // navigate('/');
   };
 
   return (
@@ -37,7 +37,7 @@ const Sidebar = () => {
       p={2}
     >
       <Typography variant="h5" sx={{ color: '#E0E0E0', textAlign: 'center' }}>
-        Admin
+        {user?.name}
       </Typography>
       <Stack
         sx={{
@@ -49,7 +49,7 @@ const Sidebar = () => {
         }}
         py={2}
       >
-        <Avatar sx={{ width: 76, height: 76 }} />
+        <Avatar src={user?.avatar} sx={{ width: 76, height: 76 }} />
       </Stack>
       <Stack>
         <List>

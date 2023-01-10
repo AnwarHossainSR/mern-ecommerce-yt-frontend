@@ -2,7 +2,9 @@ import { Box, Stack } from '@mui/material';
 import { Route, Routes } from 'react-router-dom';
 import Sidebar from '../components/Admin/common/Sidebar';
 import Dashboard from '../pages/admin/Dashboard/AdminDashboard';
+import Orders from '../pages/admin/Orders';
 import Products from '../pages/admin/Products';
+import Settings from '../pages/admin/Settings';
 import AdminProtected from '../pages/protected/AdminProtected';
 
 const AdminLayout = () => {
@@ -32,6 +34,8 @@ const AdminLayout = () => {
             <Route path="admin/">
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="products" element={<Products />} />
+              <Route path="orders" element={<Orders />} />
+              <Route path="settings" element={<Settings />} />
             </Route>
           </Route>
         </Routes>

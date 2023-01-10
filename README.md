@@ -1,40 +1,47 @@
-# react-vite-eslint-prettier-husky-template
+## Getting Started
 
-> Template for React JS projects + Vite
+MERN Ecommerce Frontend
 
-## Try it
+### Prerequisites
 
-### Github template
+This is an example of how to list things you need to use the software and how to install them.
 
-[Create a repo from this template on GitHub.](https://github.com/AnwarHossainSR/react-vite-eslint-prettier-husky-template.git/generate)
+### Installation
 
-### Clone to local
+_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-```bash
-git clone https://github.com/AnwarHossainSR/react-vite-eslint-prettier-husky-template.git
-cd my-app
-yarn install # If you don't have yarn installed, run: npm install -g yarn
-```
+1. Clone the repo
 
-## Usage
+   ```sh
+   git clone https://github.com/AnwarHossainSR/mern-ecommerce-yt-frontend.git
+   ```
 
-### Development
+2. Navigate to project folder
 
-```bash
-yarn dev
-```
+   ```sh
+      cd mern-ecommerce-yt-frontend
+   ```
 
-### Build
+   ```sh
+      yarn install  or  npm install
+   ```
 
-```bash
-yarn build
-```
+   ```sh
+      cp .env.example .env
+   ```
 
-And you will see the generated file in `dist` that ready to be served.
+   ```sh
+      setup your backend url and other credential in .env file
+   ```
 
-### Serve dist
+   ```sh
+      yarn run dev
+   ```
 
-```bash
-yarn serve
-```
-# mern-ecommerce-yt-frontend
+   ```sh
+      Go to http://localhost:3000
+   ```
+
+   ```sh
+      Happy Coading :smiley: :smiley:
+   ```

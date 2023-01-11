@@ -26,6 +26,7 @@ const AdminLayout = () => {
           width: '80%',
           height: 'auto',
           minHeight: '100vh',
+          marginLeft:'20%'
         }}
         p={2}
       >

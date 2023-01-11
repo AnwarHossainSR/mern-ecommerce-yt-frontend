@@ -3,12 +3,12 @@ import TableBody from '@mui/material/TableBody';
 import BaseTableHeader from './BaseTableHeader';
 import BaseTableRow from './BaseTableRow';
 
-const BaseTableView = ({ headers, rows,cmp }) => {
+const BaseTableView = ({ headers, rows, cmp }) => {
   return (
-    <Table sx={{ width: '100%' }}>
+    <Table>
       <BaseTableHeader headers={headers} />
       <TableBody>
-        <BaseTableRow rows={rows} cmp={cmp} />
+        {rows.length > 0 ? <BaseTableRow rows={rows} cmp={cmp} /> : 'No Data'}
       </TableBody>
     </Table>
   );

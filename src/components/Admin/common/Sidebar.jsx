@@ -33,6 +33,7 @@ const Sidebar = () => {
         width: '20%',
         backgroundColor: '#1F2A40',
         height: '100vh',
+        position:'fixed'
       }}
       p={2}
     >

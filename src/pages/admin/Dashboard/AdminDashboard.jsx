@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import StateCard from '../../../components/Admin/Cards/StateCard';
 import ChartArea from '../../../components/Admin/Charts/ChartArea';
 import TransactionTable from '../../../components/Admin/Tables/TransactionTable';
+import { stateInfo } from '../../../constants/Data';
 
 const Dashboard = () => {
   useEffect(() => {
@@ -33,10 +34,14 @@ const Dashboard = () => {
           gap: '15px',
         }}
       >
-        <StateCard />
-        <StateCard />
-        <StateCard />
-        <StateCard />
+        {stateInfo.map((item, index) => (
+          <StateCard
+            key={index}
+            Icon={item.Icon}
+            text={item.text}
+            value={item.value}
+          />
+        ))}
       </Stack>
       <Stack
         mt={5}

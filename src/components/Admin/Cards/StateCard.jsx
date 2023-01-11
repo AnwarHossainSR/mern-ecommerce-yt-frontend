@@ -1,7 +1,7 @@
-import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import DataSaverOffIcon from '@mui/icons-material/DataSaverOff';
 import { Stack, Typography } from '@mui/material';
-const StateCard = () => {
+
+const StateCard = ({ Icon, text, value }) => {
   return (
     <Stack
       sx={{
@@ -15,16 +15,16 @@ const StateCard = () => {
       p={3}
     >
       <Stack>
-        <BookmarkBorderIcon sx={{ color: '#3DA58A', fontSize: 31 }} />
+        <Icon sx={{ color: '#3DA58A', fontSize: 31 }} />
         <Typography
           sx={{
             mt: 2,
           }}
         >
-          1200$
+          {value}
         </Typography>
         <Typography variant="p" sx={{ color: '#3DA58A' }}>
-          Total Sales
+          {text}
         </Typography>
       </Stack>
       <Stack>

@@ -1,50 +1,50 @@
 export const areaChartData = [
   {
     name: 'Jan',
-    pv: 2400,
+    amount: 2400,
   },
   {
     name: 'Feb',
-    pv: 1398,
+    amount: 1398,
   },
   {
     name: 'Mar',
-    pv: 9800,
+    amount: 9800,
   },
   {
     name: 'Apr',
-    pv: 3908,
+    amount: 3908,
   },
   {
     name: 'May',
-    pv: 4800,
+    amount: 4800,
   },
   {
     name: 'Jun',
-    pv: 3800,
+    amount: 3800,
   },
   {
     name: 'July',
-    pv: 9300,
+    amount: 9300,
   },
   {
     name: 'Aug',
-    pv: 4300,
+    amount: 4300,
   },
   {
     name: 'Sep',
-    pv: 4300,
+    amount: 4300,
   },
   {
     name: 'Oct',
-    pv: 6300,
+    amount: 6300,
   },
   {
     name: 'Nov',
-    pv: 8300,
+    amount: 8300,
   },
   {
     name: 'Dec',
-    pv: 4300,
+    amount: 4300,
   },
 ];

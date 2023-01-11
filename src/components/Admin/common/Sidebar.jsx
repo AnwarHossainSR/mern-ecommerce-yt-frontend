@@ -49,7 +49,7 @@ const Sidebar = () => {
         }}
         py={2}
       >
-        <Avatar src={user?.avatar} sx={{ width: 76, height: 76 }} />
+        <Avatar src={user?.avatar?.url} sx={{ width: 76, height: 76 }} />
       </Stack>
       <Stack>
         <List>

@@ -1,6 +1,10 @@
 import CategoryIcon from '@mui/icons-material/Category';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import GradeIcon from '@mui/icons-material/Grade';
 import HomeIcon from '@mui/icons-material/Home';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import assets from '../assets';
@@ -30,6 +34,29 @@ export const menuItems = [
     name: 'Settings',
     icon: SettingsIcon,
     path: '/admin/settings',
+  },
+];
+
+export const stateInfo = [
+  {
+    text: 'Sales Obtained',
+    value: '4533.45 $',
+    Icon: MonetizationOnIcon,
+  },
+  {
+    text: 'Total Client',
+    value: 466,
+    Icon: PersonAddAltIcon,
+  },
+  {
+    text: 'Total Products',
+    value: 144,
+    Icon: InventoryIcon,
+  },
+  {
+    text: 'Total Orders',
+    value: 144,
+    Icon: GradeIcon,
   },
 ];
 
@@ -206,4 +233,5 @@ const Data = {
     },
   ],
 };
+
 export default Data;

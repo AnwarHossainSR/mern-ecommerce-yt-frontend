@@ -69,3 +69,13 @@ export const getCartProductPriceInfo = (carts) => {
 
   return priceInfo;
 };
+
+// return 'Name', 'Image', 'Category', 'Stock', 'Price' from array of object
+export const getFilteredProducts = (products) => {
+  const filteredProducts = products.map((product) => {
+    const { name, images, category, stock, price } = product;
+    return { name, images, category, stock, price };
+  });
+
+  return filteredProducts;
+};

@@ -1,4 +1,4 @@
-import { Avatar, TableCell } from '@mui/material';
+import { Avatar, Button, TableCell } from '@mui/material';
 
 const BaseTableCell = ({ row, cmp }) => {
   return (
@@ -10,13 +10,29 @@ const BaseTableCell = ({ row, cmp }) => {
           sx={{ color: '#D9DBDF' }}
         >
           {cmp === 'products' && index === 1 ? (
-            <Avatar src="" alt="" />
+            <Avatar
+              src={row[key][0].url}
+              alt=""
+              sx={{ width: '50px', height: '50px' }}
+            />
           ) : (
             row[key]
           )}
           {cmp !== 'products' && row[key]}
         </TableCell>
       ))}
+      <TableCell
+        sx={{
+          '&:last-child button': { ml: 2 },
+        }}
+      >
+        <Button variant="contained" color="primary">
+          Edit
+        </Button>
+        <Button variant="contained" color="error">
+          Delete
+        </Button>
+      </TableCell>
     </>
   );
 };

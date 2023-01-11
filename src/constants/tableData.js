@@ -43,4 +43,12 @@ export const productTableRows = [
   },
 ];
 
-export const productTableHeaders = ['Name', 'Image', 'Category', 'Stock', 'Price', 'Action'];
+export const productTableHeaders = [
+  'Serial',
+  'Name',
+  'Image',
+  'Category',
+  'Stock',
+  'Price',
+  'Action',
+];

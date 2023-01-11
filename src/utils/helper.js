@@ -1,10 +1,13 @@
-import {useLocation} from 'react-router-dom';
-import {toast} from 'react-toastify';
-export const useQuery =
-    () => { return new URLSearchParams(useLocation().search);};
+import { useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
+export const useQuery = () => {
+  return new URLSearchParams(useLocation().search);
+};
 
 export const getQueryUrl = (params) => {
-  return Object.keys(params).map((key) => `${key}=${params[key]}`).join('&');
+  return Object.keys(params)
+    .map((key) => `${key}=${params[key]}`)
+    .join('&');
 };
 
 export const getCartDetails = (cartProducts) => {
@@ -13,50 +16,51 @@ export const getCartDetails = (cartProducts) => {
     if (carts[product._id]) {
       carts[product._id].quantity += 1;
     } else {
-      carts[product._id] = {...product, quantity : 1};
+      carts[product._id] = { ...product, quantity: 1 };
     }
   });
   return convertObjectToArray(carts);
 };
 
-export const convertObjectToArray =
-    (object) => { return Object.keys(object).map((key) => object[key]);};
+export const convertObjectToArray = (object) => {
+  return Object.keys(object).map((key) => object[key]);
+};
 
 export const notify = (message, type) => {
   switch (type) {
-  case 'success':
-    toast.success(message, {
-      position : 'bottom-right',
-      className : `foo-bar ${type}`,
-    });
-    break;
-  case 'error':
-    toast.error(message, {
-      position : 'bottom-right',
-      className : `foo-bar ${type}`,
-    });
-    break;
-  default:
-    toast(message, {
-      position : 'bottom-right',
-      className : `foo-bar ${type}`,
-    });
+    case 'success':
+      toast.success(message, {
+        position: 'bottom-right',
+        className: `foo-bar ${type}`,
+      });
+      break;
+    case 'error':
+      toast.error(message, {
+        position: 'bottom-right',
+        className: `foo-bar ${type}`,
+      });
+      break;
+    default:
+      toast(message, {
+        position: 'bottom-right',
+        className: `foo-bar ${type}`,
+      });
   }
 };
 
 export const getCartProductPriceInfo = (carts) => {
   const priceInfo = {
-    totalPrice : 0,
-    totalDiscount : 0,
-    grantTotal : 0,
-    totalQuantity : 0,
+    totalPrice: 0,
+    totalDiscount: 0,
+    grantTotal: 0,
+    totalQuantity: 0,
   };
 
   carts.forEach((cart) => {
     priceInfo.totalPrice += cart.price * cart.quantity;
     if (cart.discount && cart.discount > 0) {
       priceInfo.totalDiscount +=
-          (cart.discount / 100) * cart.price * cart.quantity;
+        (cart.discount / 100) * cart.price * cart.quantity;
     }
     priceInfo.totalQuantity += cart.quantity;
   });
@@ -69,9 +73,9 @@ export const getCartProductPriceInfo = (carts) => {
 // return 'Name', 'Image', 'Category', 'Stock', 'Price' from array of object
 export const getFilteredProducts = (products) => {
   const filteredProducts = products.map((product, index) => {
-    let {_id, name, images, category, stock, price} = product;
+    let { _id, name, images, category, stock, price } = product;
     _id = index + 1;
-    return {_id, name, images, category, stock, price};
+    return { _id, name, images, category, stock, price };
   });
 
   return filteredProducts;

@@ -8,12 +8,13 @@ import {
 } from '@mui/material';
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import WHiteSpace from '../../components/App/whitespac/WHiteSpace';
 import { getAuthAction } from '../../redux/actions/UserAction';
 
 const Login = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
   const { error, isAuth, isLoading, user } = useSelector(
     (state) => state.users
   );
@@ -31,9 +32,9 @@ const Login = () => {
   useEffect(() => {
     if (isAuth) {
       if (user.role === 'admin') {
-        navigate('/admin/dashboard');
+        navigate(state?.from ? state.from : '/admin/dashboard');
       } else {
-        navigate('/dashboard');
+        navigate(state?.from ? state.from : '/dashboard');
       }
     }
   }, [isAuth, user]);

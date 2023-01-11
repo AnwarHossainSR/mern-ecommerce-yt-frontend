@@ -19,7 +19,7 @@ const ChartArea = () => {
       <Tooltip />
       <Area
         type="monotone"
-        dataKey="pv"
+        dataKey="amount"
         stroke="#82ca9d"
         fillOpacity={1}
         fill="url(#colorPv)"

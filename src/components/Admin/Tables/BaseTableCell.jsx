@@ -1,6 +1,6 @@
-import { TableCell } from '@mui/material';
+import { Avatar, TableCell } from '@mui/material';
 
-const BaseTableCell = ({ row }) => {
+const BaseTableCell = ({ row, cmp }) => {
   return (
     <>
       {Object.keys(row).map((key, index) => (
@@ -9,7 +9,12 @@ const BaseTableCell = ({ row }) => {
           //align={index === 0 ? 'left' : 'right'}
           sx={{ color: '#D9DBDF' }}
         >
-          {row[key]}
+          {cmp === 'products' && index === 1 ? (
+            <Avatar src="" alt="" />
+          ) : (
+            row[key]
+          )}
+          {cmp !== 'products' && row[key]}
         </TableCell>
       ))}
     </>

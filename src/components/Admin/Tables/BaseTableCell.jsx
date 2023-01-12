@@ -2,7 +2,6 @@ import { Avatar, Button, TableCell } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 const BaseTableCell = ({ row, cmp }) => {
-  console.log(row);
   const navigate = useNavigate();
   return (
     <>

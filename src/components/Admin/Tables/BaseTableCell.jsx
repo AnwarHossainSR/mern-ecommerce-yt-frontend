@@ -1,8 +1,14 @@
 import { Avatar, Button, TableCell } from '@mui/material';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { deleteProductAction } from '../../../redux/actions/ProductAction';
 
 const BaseTableCell = ({ row, cmp }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const handleDeleteEvent = (id) => {
+    dispatch(deleteProductAction(id));
+  };
   return (
     <>
       {Object.keys(row).map((key, index) => (
@@ -35,7 +41,11 @@ const BaseTableCell = ({ row, cmp }) => {
         >
           Edit
         </Button>
-        <Button variant="contained" color="error">
+        <Button
+          variant="contained"
+          color="error"
+          onClick={() => handleDeleteEvent(row._id)}
+        >
           Delete
         </Button>
       </TableCell>

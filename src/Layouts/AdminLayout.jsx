@@ -4,6 +4,7 @@ import Sidebar from '../components/Admin/common/Sidebar';
 import Dashboard from '../pages/admin/Dashboard/AdminDashboard';
 import Orders from '../pages/admin/Orders';
 import Products from '../pages/admin/Products';
+import EditProduct from '../pages/admin/Products/EditProduct';
 import Settings from '../pages/admin/Settings';
 import AdminProtected from '../pages/protected/AdminProtected';
 
@@ -26,7 +27,7 @@ const AdminLayout = () => {
           width: '80%',
           height: 'auto',
           minHeight: '100vh',
-          marginLeft:'20%'
+          marginLeft: '20%',
         }}
         p={2}
       >
@@ -34,7 +35,11 @@ const AdminLayout = () => {
           <Route path="/" element={<AdminProtected />}>
             <Route path="admin/">
               <Route path="dashboard" element={<Dashboard />} />
-              <Route path="products" element={<Products />} />
+              <Route path="products/*">
+                <Route index element={<Products />} />
+                <Route path=":productId" element={<EditProduct />} />
+              </Route>
+
               <Route path="orders" element={<Orders />} />
               <Route path="settings" element={<Settings />} />
             </Route>

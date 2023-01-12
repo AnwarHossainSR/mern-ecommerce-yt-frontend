@@ -8,6 +8,7 @@ import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
 import ResetPassword from '../pages/auth/ResetPassword';
 import Cart from '../pages/Cart';
+import Shipping from '../pages/Cart/Shipping';
 import Home from '../pages/Home';
 import Products from '../pages/Products';
 import Protected from '../pages/protected/Protected';
@@ -21,8 +22,9 @@ const Layout = () => {
         <Route path="/products">
           <Route index element={<Products />} />
         </Route>
-        <Route path="/carts" element={<Protected />}>
+        <Route path="/carts/*" element={<Protected />}>
           <Route index element={<Cart />} />
+          <Route path="checkout-process" element={<Shipping />} />
         </Route>
         <Route path="/" element={<Protected />}>
           <Route path="dashboard" element={<Dashboard />} />
@@ -31,6 +33,7 @@ const Layout = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/password/reset/:token" element={<ResetPassword />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

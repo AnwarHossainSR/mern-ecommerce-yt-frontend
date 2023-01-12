@@ -2,10 +2,7 @@ import { Avatar, Button, Card, Stack, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import WhiteSpace from '../../components/App/whitespac/WHiteSpace';
-import {
-  clearCartsAction,
-  removeSpecificCartFromCartAction,
-} from '../../redux/actions/CartAction';
+import { removeSpecificCartFromCartAction } from '../../redux/actions/CartAction';
 import { getCartDetails, getCartProductPriceInfo } from '../../utils/helper';
 
 const Cart = () => {
@@ -17,11 +14,6 @@ const Cart = () => {
 
   const removeItemFromCart = (cart) => () => {
     dispatch(removeSpecificCartFromCartAction(cartProducts, cart));
-  };
-
-  const clearCarts = () => {
-    dispatch(clearCartsAction());
-    navigate('/');
   };
 
   return (
@@ -171,7 +163,7 @@ const Cart = () => {
                         justifyContent: 'center',
                         alignItems: 'center',
                       }}
-                      onClick={clearCarts}
+                      onClick={() => navigate('./checkout-process')}
                     >
                       Checkout
                     </Button>

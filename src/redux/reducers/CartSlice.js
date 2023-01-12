@@ -5,6 +5,7 @@ const initialState = {
   error: '',
   cartProducts: [],
   cartProduct: {},
+  shippingInfo: {},
 };
 
 export const cartSlice = createSlice({
@@ -28,6 +29,9 @@ export const cartSlice = createSlice({
       state.isLoading = false;
       state.cartProducts = [];
       state.error = '';
+    },
+    shippingSUccess: (state, { payload }) => {
+      state.shippingInfo = payload;
     },
   },
 });

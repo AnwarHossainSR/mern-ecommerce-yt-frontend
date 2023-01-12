@@ -13,7 +13,7 @@ import {
 import { useState } from 'react';
 import { categories } from '../../../constants/categories';
 
-const CreateProduct = ({handleClose}) => {
+const CreateProduct = ({ handleClose }) => {
   const [category, setCategory] = useState('');
   return (
     <Stack>
@@ -144,7 +144,9 @@ const CreateProduct = ({handleClose}) => {
               py={3}
             >
               <Button variant="contained">Create</Button>
-              <Button color="error" onClick={handleClose}>Cancel</Button>
+              <Button color="error" onClick={handleClose}>
+                Cancel
+              </Button>
             </Stack>
           </Stack>
         </Box>

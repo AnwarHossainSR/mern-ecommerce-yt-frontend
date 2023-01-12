@@ -5,6 +5,7 @@ const initialState = {
   error: '',
   productsInfo: [],
   product: {},
+  message: '',
 };
 
 export const productSlice = createSlice({
@@ -29,11 +30,20 @@ export const productSlice = createSlice({
       state.productsInfo = [];
       state.error = '';
     },
+    messageProduct: (state, { payload }) => {
+      state.isLoading = false;
+      state.message = payload;
+    },
   },
 });
 
 const { reducer, actions } = productSlice;
-export const { productPending, productSuccess, productFailure, clearProduct } =
-  actions;
+export const {
+  messageProduct,
+  productPending,
+  productSuccess,
+  productFailure,
+  clearProduct,
+} = actions;
 
 export default reducer;

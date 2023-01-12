@@ -72,9 +72,8 @@ export const getCartProductPriceInfo = (carts) => {
 
 // return 'Name', 'Image', 'Category', 'Stock', 'Price' from array of object
 export const getFilteredProducts = (products) => {
-  const filteredProducts = products.map((product, index) => {
+  const filteredProducts = products.map((product) => {
     let { _id, name, images, category, stock, price } = product;
-    _id = index + 1;
     return { _id, name, images, category, stock, price };
   });
 

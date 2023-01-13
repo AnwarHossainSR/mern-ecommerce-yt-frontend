@@ -1,47 +1,45 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-  isLoading: false,
-  error: '',
-  order: {},
-  message: '',
-  payment: {},
+  isLoading : false,
+  error : '',
+  order : {},
+  message : '',
+  payment : {},
 };
 
 export const orderSlice = createSlice({
-  name: 'orders',
+  name : 'orders',
   initialState,
-  reducers: {
-    orderPending: (state) => {
-      state.isLoading = true;
-    },
-    orderSuccess: (state, { payload }) => {
+  reducers : {
+    orderPending : (state) => { state.isLoading = true;},
+    orderSuccess : (state, {payload}) => {
       state.error = '';
       state.isLoading = false;
       state.order = payload;
     },
-    orderFailure: (state, { payload }) => {
+    orderFailure : (state, {payload}) => {
       state.error = payload;
       state.isLoading = false;
       state.order = {};
     },
-    orderClear: (state) => {
+    orderClear : (state) => {
       state.isLoading = false;
       state.order = {};
       state.error = '';
     },
-    orderMessage: (state, { payload }) => {
+    orderMessage : (state, {payload}) => {
       state.isLoading = false;
       state.message = payload;
     },
-    paymentSuccess: (state, { payload }) => {
+    paymentSuccess : (state, {payload}) => {
       state.isLoading = false;
       state.payment = payload;
     },
   },
 });
 
-const { reducer, actions } = orderSlice;
+const {reducer, actions} = orderSlice;
 export const {
   orderPending,
   orderSuccess,

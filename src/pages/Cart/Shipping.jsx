@@ -1,35 +1,12 @@
 // import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Button, Stack, TextField } from '@mui/material';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Stack, TextField } from '@mui/material';
 import { storShippingInfoAction } from '../../redux/actions/CartAction';
-import { notify } from '../../utils/helper';
 
-const Shipping = ({ setActiveStep }) => {
+const Shipping = () => {
   const dispatch = useDispatch();
-  const { shippingInfo, cartProducts } = useSelector((state) => state.carts);
-  const navigate = useNavigate();
-
-  const handleShipping = () => {
-    //check all required fields
-    if (!shippingInfo?.address) return notify('Address is required', 'error');
-    if (!shippingInfo?.city) return notify('City is required', 'error');
-    if (!shippingInfo?.state) return notify('State is required', 'error');
-    if (!shippingInfo?.country) return notify('Country is required', 'error');
-    if (!shippingInfo?.pinCode) return notify('Pin Code is required', 'error');
-    if (!shippingInfo?.phoneNo)
-      return notify('Phone Number is required', 'error');
-
-    if (
-      shippingInfo?.phoneNo?.length < 11 ||
-      shippingInfo?.phoneNo?.length > 11
-    )
-      return notify('Phone Number should be 11 digits', 'error');
-
-    setActiveStep((prev) => prev + 1);
-  };
+  const { shippingInfo } = useSelector((state) => state.carts);
 
   const handleChange = (e) => {
     dispatch(
@@ -40,12 +17,8 @@ const Shipping = ({ setActiveStep }) => {
     );
   };
 
-  useEffect(() => {
-    if (cartProducts.length === 0) return navigate('/');
-  }, [cartProducts]);
-
   return (
-    <Stack px={20} py={5}>
+    <>
       <Stack spacing={2}>
         <Stack direction="row" sx={{ gap: '3rem' }}>
           <TextField
@@ -110,26 +83,8 @@ const Shipping = ({ setActiveStep }) => {
             onChange={handleChange}
           />
         </Stack>
-
-        <Stack
-          sx={{
-            gap: '1rem',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            flexDirection: 'row',
-          }}
-          py={3}
-        >
-          <Button variant="contained" color="secondary">
-            Back
-          </Button>
-          <Button variant="contained" color="success" onClick={handleShipping}>
-            Confirm Shipping Info
-          </Button>
-        </Stack>
       </Stack>
-    </Stack>
+    </>
   );
 };
 

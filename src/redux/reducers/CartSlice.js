@@ -7,6 +7,7 @@ const initialState = {
   cartProduct: {},
   shippingInfo: {},
   errors: {},
+  extraInfo: {},
 };
 
 export const cartSlice = createSlice({
@@ -35,6 +36,9 @@ export const cartSlice = createSlice({
       state.shippingInfo = payload;
       state.errors = payload;
     },
+    extraInfoSUccess: (state, { payload }) => {
+      state.extraInfo = payload;
+    },
   },
 });
 
@@ -45,6 +49,7 @@ export const {
   cartFailure,
   clearCart,
   shippingSuccess,
+  extraInfoSUccess
 } = actions;
 
 export default reducer;

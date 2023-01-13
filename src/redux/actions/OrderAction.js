@@ -1,5 +1,5 @@
-import {postApi} from '../../API/CallAPI';
-import {notify} from '../../utils/helper';
+import { postApi } from '../../API/CallAPI';
+import { notify } from '../../utils/helper';
 import {
   orderFailure,
   orderPending,
@@ -24,7 +24,7 @@ export const createOrderAction = (order) => async (dispatch) => {
 export const createCheckoutSession = (orderId) => async (dispatch) => {
   try {
     console.log(orderId);
-    const res = await postApi('/payment/checkout', {orderId});
+    const res = await postApi('/payment/checkout', { orderId });
     if (res.success === true) {
       dispatch(paymentSuccess(res));
       notify('Payment session has been started', 'success');

@@ -4,6 +4,7 @@ import {
   cartPending,
   cartSuccess,
   clearCart,
+  shippingSuccess,
 } from '../reducers/CartSlice';
 
 export const storeProductInCart =
@@ -42,3 +43,12 @@ export const removeSpecificCartFromCartAction =
       notify('Something went wrong', 'error');
     }
   };
+
+export const storShippingInfoAction = (shippingInfo) => async (dispatch) => {
+  console.log(shippingInfo);
+  try {
+    dispatch(shippingSuccess(shippingInfo));
+  } catch (error) {
+    notify('Something went wrong', 'error');
+  }
+};

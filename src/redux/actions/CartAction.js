@@ -2,6 +2,7 @@ import { notify } from '../../utils/helper';
 import {
   cartFailure,
   cartPending,
+  cartProductDetails,
   cartSuccess,
   clearCart,
   extraInfoSUccess,
@@ -46,7 +47,6 @@ export const removeSpecificCartFromCartAction =
   };
 
 export const storShippingInfoAction = (shippingInfo) => async (dispatch) => {
-  console.log(shippingInfo);
   try {
     dispatch(shippingSuccess(shippingInfo));
   } catch (error) {
@@ -57,6 +57,14 @@ export const storShippingInfoAction = (shippingInfo) => async (dispatch) => {
 export const storeExtraInfoAction = (extraInfo) => async (dispatch) => {
   try {
     dispatch(extraInfoSUccess(extraInfo));
+  } catch (error) {
+    notify('Something went wrong', 'error');
+  }
+};
+
+export const cartProductDetailsAction = (cartDetails) => async (dispatch) => {
+  try {
+    dispatch(cartProductDetails(cartDetails));
   } catch (error) {
     notify('Something went wrong', 'error');
   }

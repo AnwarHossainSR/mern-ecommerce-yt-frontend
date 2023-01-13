@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import WhiteSpace from '../../components/App/whitespac/WHiteSpace';
 import {
+  cartProductDetailsAction,
   removeSpecificCartFromCartAction,
   storeExtraInfoAction,
 } from '../../redux/actions/CartAction';
@@ -167,6 +168,7 @@ const Cart = () => {
                         alignItems: 'center',
                       }}
                       onClick={() => {
+                        dispatch(cartProductDetailsAction(carts));
                         dispatch(storeExtraInfoAction(priceInfo));
                         navigate('./checkout-process');
                       }}

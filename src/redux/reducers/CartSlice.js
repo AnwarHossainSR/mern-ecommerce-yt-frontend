@@ -4,7 +4,7 @@ const initialState = {
   isLoading: false,
   error: '',
   cartProducts: [],
-  cartProduct: {},
+  cartDetails: [],
   shippingInfo: {},
   errors: {},
   extraInfo: {},
@@ -39,6 +39,9 @@ export const cartSlice = createSlice({
     extraInfoSUccess: (state, { payload }) => {
       state.extraInfo = payload;
     },
+    cartProductDetails: (state, { payload }) => {
+      state.cartDetails = payload;
+    },
   },
 });
 
@@ -49,7 +52,8 @@ export const {
   cartFailure,
   clearCart,
   shippingSuccess,
-  extraInfoSUccess
+  extraInfoSUccess,
+  cartProductDetails,
 } = actions;
 
 export default reducer;

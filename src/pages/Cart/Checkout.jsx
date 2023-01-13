@@ -1,18 +1,26 @@
 // import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Button, Stack } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { notify } from '../../utils/helper';
+import {
+  createCheckoutSession,
+  createOrderAction,
+} from '../../redux/actions/OrderAction';
+import { getFilteredData, notify } from '../../utils/helper';
 import CheckoutSteps from './CheckoutSteps';
 import Payment from './Payment';
 import PlaceOrder from './PlaceOrder';
 import Shipping from './Shipping';
 
 const Checkout = () => {
+  const dispatch = useDispatch();
   const [activeStep, setActiveStep] = useState(0);
-  const { shippingInfo, cartProducts } = useSelector((state) => state.carts);
+  const { shippingInfo, cartProducts, cartDetails, extraInfo } = useSelector(
+    (state) => state.carts
+  );
+  const { order } = useSelector((state) => state.orders);
   const navigate = useNavigate();
 
   const handleNavigate = () => {
@@ -45,12 +53,20 @@ const Checkout = () => {
     }
 
     if (activeStep === 1) {
-      //call api to place order
+      let order = {
+        shippingInfo,
+        orderItems: getFilteredData(cartDetails),
+        itemsPrice: extraInfo.totalPrice.toFixed(2),
+        totalPrice: extraInfo.grantTotal.toFixed(2),
+      };
+      dispatch(createOrderAction(order));
       setActiveStep((prev) => prev + 1);
     }
 
     if (activeStep === 2) {
-      //payment functionality
+      if (order) {
+        dispatch(createCheckoutSession(order?._id));
+      }
     }
   };
 
@@ -80,6 +96,7 @@ const Checkout = () => {
               variant="contained"
               color="secondary"
               onClick={handleNavigate}
+              disabled={activeStep === 0 || activeStep === 2}
             >
               Back
             </Button>

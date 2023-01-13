@@ -79,3 +79,12 @@ export const getFilteredProducts = (products) => {
 
   return filteredProducts;
 };
+
+export const getFilteredData = (data) => {
+  const filteredData = data.map((item) => {
+    let { _id, name, images, quantity, price } = item;
+    return { product: _id, name, image: images[0].url, quantity, price };
+  });
+
+  return filteredData;
+};

@@ -12,7 +12,7 @@ const Cart = () => {
   const navigate = useNavigate();
   const priceInfo = getCartProductPriceInfo(carts);
 
-  const removeItemFromCart = (cart) => () => {
+  const removeItemFromCart = (cart) => {
     dispatch(removeSpecificCartFromCartAction(cartProducts, cart));
   };
 

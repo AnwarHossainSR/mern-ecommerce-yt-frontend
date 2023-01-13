@@ -6,6 +6,7 @@ const initialState = {
   cartProducts: [],
   cartProduct: {},
   shippingInfo: {},
+  errors: {},
 };
 
 export const cartSlice = createSlice({
@@ -30,13 +31,20 @@ export const cartSlice = createSlice({
       state.cartProducts = [];
       state.error = '';
     },
-    shippingSUccess: (state, { payload }) => {
+    shippingSuccess: (state, { payload }) => {
       state.shippingInfo = payload;
+      state.errors = payload;
     },
   },
 });
 
 const { reducer, actions } = cartSlice;
-export const { cartPending, cartSuccess, cartFailure, clearCart } = actions;
+export const {
+  cartPending,
+  cartSuccess,
+  cartFailure,
+  clearCart,
+  shippingSuccess,
+} = actions;
 
 export default reducer;

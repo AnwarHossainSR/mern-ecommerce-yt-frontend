@@ -6,8 +6,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { notify } from '../../utils/helper';
 import CheckoutSteps from './CheckoutSteps';
-import OrderConfirm from './OrderConfirm';
 import Payment from './Payment';
+import PlaceOrder from './PlaceOrder';
 import Shipping from './Shipping';
 
 const Checkout = () => {
@@ -45,7 +45,12 @@ const Checkout = () => {
     }
 
     if (activeStep === 1) {
+      //call api to place order
       setActiveStep((prev) => prev + 1);
+    }
+
+    if (activeStep === 2) {
+      //payment functionality
     }
   };
 
@@ -58,7 +63,7 @@ const Checkout = () => {
             {activeStep === 0 && (
               <Shipping setActiveStep={setActiveStep} activeStep={activeStep} />
             )}
-            {activeStep === 1 && <OrderConfirm setActiveStep={setActiveStep} />}
+            {activeStep === 1 && <PlaceOrder setActiveStep={setActiveStep} />}
             {activeStep === 2 && <Payment setActiveStep={setActiveStep} />}
           </Stack>
           <Stack

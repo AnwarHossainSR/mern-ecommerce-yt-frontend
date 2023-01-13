@@ -4,6 +4,7 @@ import {
   cartPending,
   cartSuccess,
   clearCart,
+  extraInfoSUccess,
   shippingSuccess,
 } from '../reducers/CartSlice';
 
@@ -48,6 +49,14 @@ export const storShippingInfoAction = (shippingInfo) => async (dispatch) => {
   console.log(shippingInfo);
   try {
     dispatch(shippingSuccess(shippingInfo));
+  } catch (error) {
+    notify('Something went wrong', 'error');
+  }
+};
+
+export const storeExtraInfoAction = (extraInfo) => async (dispatch) => {
+  try {
+    dispatch(extraInfoSUccess(extraInfo));
   } catch (error) {
     notify('Something went wrong', 'error');
   }

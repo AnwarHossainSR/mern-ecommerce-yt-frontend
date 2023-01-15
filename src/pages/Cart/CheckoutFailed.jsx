@@ -1,7 +1,7 @@
 import { Button, Stack } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-const CheckoutSuccess = () => {
+const CheckoutFailed = () => {
   const navigate = useNavigate();
   return (
     <Stack
@@ -26,11 +26,15 @@ const CheckoutSuccess = () => {
           width: '100%',
         }}
       >
-        <h1>Checkout Success</h1>
-        <p>Thank you for your purchase!</p>
+        <h1 style={{ color: 'tomato' }}>Checkout Failed</h1>
+        <p>Please order again and pay!</p>
         <Stack py={5}>
-          <Button variant="contained" onClick={() => navigate('/')}>
-            Back to Home
+          <Button
+            variant="contained"
+            color="error"
+            onClick={() => navigate('/carts')}
+          >
+            Back to Carts
           </Button>
         </Stack>
       </Stack>
@@ -38,4 +42,4 @@ const CheckoutSuccess = () => {
   );
 };
 
-export default CheckoutSuccess;
+export default CheckoutFailed;

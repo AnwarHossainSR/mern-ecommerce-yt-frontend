@@ -9,6 +9,7 @@ import Register from '../pages/auth/Register';
 import ResetPassword from '../pages/auth/ResetPassword';
 import Cart from '../pages/Cart';
 import Checkout from '../pages/Cart/Checkout';
+import CheckoutFailed from '../pages/Cart/CheckoutFailed';
 import CheckoutSuccess from '../pages/Cart/CheckoutSuccess';
 import Home from '../pages/Home';
 import Products from '../pages/Products';
@@ -26,8 +27,9 @@ const Layout = () => {
         <Route path="/carts/*" element={<Protected />}>
           <Route index element={<Cart />} />
           <Route path="checkout-process" element={<Checkout />} />
-          <Route path="checkout/success" element={<CheckoutSuccess />} />
         </Route>
+        <Route path="checkout/success" element={<CheckoutSuccess />} />
+        <Route path="/checkout/fail/:orderId" element={<CheckoutFailed />} />
         <Route path="/" element={<Protected />}>
           <Route path="dashboard" element={<Dashboard />} />
         </Route>

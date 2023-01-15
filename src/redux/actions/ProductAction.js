@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { deleteApi, getApi } from '../../API/CallAPI';
 import { notify } from '../../utils/helper';
 import {
@@ -35,6 +36,26 @@ export const deleteProductAction = (params) => async (dispatch) => {
   } catch (error) {
     console.log('error', error);
     dispatch(productFailure(error.message));
+    notify(error.message, 'error');
+  }
+};
+
+export const createProductAction = (data) => async (dispatch) => {
+  dispatch(productPending());
+  try {
+    const response = await axios.post('/admin/product/new', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    if (response?.data?.success === true) {
+      dispatch(messageProduct('Create product successfully!'));
+      dispatch(getAllProducts());
+      notify('Create product successfully!', 'success');
+    }
+  } catch (error) {
+    console.log('error', error);
+    dispatch(getAllProducts());
     notify(error.message, 'error');
   }
 };

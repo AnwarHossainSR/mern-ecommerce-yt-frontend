@@ -11,11 +11,16 @@ const Search = () => {
   const handleKeyDown = async (event) => {
     if (event.target.value === '') return;
     if (event.key === 'Enter') {
-      const queryUrl = getQueryUrl({
-        keyword: event.target.value,
-        category,
-      });
-      navigate(`/products?${queryUrl}`);
+      if (category === null) {
+        navigate(`/products?keyword=${event.target.value}`);
+        return;
+      } else {
+        const queryUrl = getQueryUrl({
+          keyword: event.target.value,
+          category,
+        });
+        navigate(`/products?${queryUrl}`);
+      }
     }
   };
   // fixed Header

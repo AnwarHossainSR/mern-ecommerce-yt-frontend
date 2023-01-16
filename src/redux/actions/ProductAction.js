@@ -2,6 +2,7 @@ import axios from 'axios';
 import { deleteApi, getApi } from '../../API/CallAPI';
 import { notify } from '../../utils/helper';
 import {
+  dashboardData,
   messageProduct,
   productFailure,
   productPending,
@@ -57,5 +58,15 @@ export const createProductAction = (data) => async (dispatch) => {
     console.log('error', error);
     dispatch(getAllProducts());
     notify(error.message, 'error');
+  }
+};
+
+export const getDashboardData = () => async (dispatch) => {
+  dispatch(productPending());
+  try {
+    const response = await getApi('/admin/dashboard');
+    dispatch(dashboardData(response));
+  } catch (error) {
+    dispatch(productFailure(error.message));
   }
 };

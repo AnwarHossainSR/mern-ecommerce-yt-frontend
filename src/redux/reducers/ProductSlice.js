@@ -1,48 +1,46 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-  isLoading: false,
-  error: '',
-  productsInfo: [],
-  product: {},
-  message: '',
-  dashboard: {},
+  isLoading : false,
+  error : '',
+  productsInfo : [],
+  product : {},
+  message : '',
+  dashboard : {},
 };
 
 export const productSlice = createSlice({
-  name: 'products',
+  name : 'products',
   initialState,
-  reducers: {
-    productPending: (state) => {
-      state.isLoading = true;
-    },
-    productSuccess: (state, { payload }) => {
+  reducers : {
+    productPending : (state) => { state.isLoading = true;},
+    productSuccess : (state, {payload}) => {
       state.error = '';
       state.isLoading = false;
       state.productsInfo = payload;
     },
-    productFailure: (state, { payload }) => {
+    productFailure : (state, {payload}) => {
       state.error = payload;
       state.isLoading = false;
       state.productsInfo = [];
     },
-    clearProduct: (state) => {
+    clearProduct : (state) => {
       state.isLoading = false;
       state.productsInfo = [];
       state.error = '';
     },
-    messageProduct: (state, { payload }) => {
+    messageProduct : (state, {payload}) => {
       state.isLoading = false;
       state.message = payload;
     },
-    dashboardData: (state, { payload }) => {
+    dashboardData : (state, {payload}) => {
       state.isLoading = false;
       state.dashboard = payload;
     },
   },
 });
 
-const { reducer, actions } = productSlice;
+const {reducer, actions} = productSlice;
 export const {
   messageProduct,
   productPending,

@@ -18,8 +18,6 @@ const App = () => {
     }
   }, [isAuth]);
 
-  
-
   if (pathname.startsWith('/admin')) return <AdminLayout />;
   return (
     <Suspense fallback={<SuspenseFallback />}>

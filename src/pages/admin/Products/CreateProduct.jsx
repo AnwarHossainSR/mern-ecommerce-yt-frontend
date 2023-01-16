@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { categories } from '../../../constants/Categories';
+import { categories } from '../../../constants/categories';
 import { createProductAction } from '../../../redux/actions/ProductAction';
 
 const CreateProduct = ({ handleClose }) => {
@@ -46,6 +46,7 @@ const CreateProduct = ({ handleClose }) => {
     // call create product action
     dispatch(createProductAction({ ...formData, image: file }));
   };
+
   return (
     <Stack>
       <Typography variant="h4">Create Product</Typography>

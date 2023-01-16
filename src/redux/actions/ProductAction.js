@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-import {deleteApi, getApi} from '../../API/CallAPI';
-import {notify} from '../../utils/helper';
+import { deleteApi, getApi } from '../../API/CallAPI';
+import { notify } from '../../utils/helper';
 import {
   dashboardData,
   messageProduct,
@@ -13,8 +13,7 @@ import {
 export const getAllProducts = (params) => async (dispatch) => {
   dispatch(productPending());
   try {
-    if (!params)
-      params = '';
+    if (!params) params = '';
     const response = await getApi(`/products${params}`);
     if (response.success === true) {
       dispatch(productSuccess(response.products));
@@ -47,8 +46,8 @@ export const createProductAction = (data) => async (dispatch) => {
   dispatch(productPending());
   try {
     const response = await axios.post('/admin/product/new', data, {
-      headers : {
-        'Content-Type' : 'multipart/form-data',
+      headers: {
+        'Content-Type': 'multipart/form-data',
       },
     });
     if (response?.data?.success === true) {

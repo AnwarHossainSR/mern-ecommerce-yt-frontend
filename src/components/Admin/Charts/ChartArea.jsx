@@ -1,11 +1,10 @@
 import { Area, AreaChart, Tooltip, XAxis, YAxis } from 'recharts';
-import { areaChartData } from '../../../constants/Chart';
-const ChartArea = () => {
+const ChartArea = ({ graphData }) => {
   return (
     <AreaChart
       width={730}
       height={250}
-      data={areaChartData}
+      data={graphData}
       margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
     >
       <defs>
